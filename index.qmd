@@ -78,6 +78,9 @@ dbDisconnect(con)
 
 #Next, we can filter the report (which is now only showing us reports from SQL City) by the date of the murder: January 15th
 #And then we can filter the report by "type" of crime to show us only reports of murders.
+```
+
+
 
 ```{r}
 # we first filter SQL city from Crime report
@@ -90,8 +93,13 @@ SQL_filtered <- crime_scene_report %>%
 
 ```
 
+```{r}
+
+filtered_person <- person%>%
+  filter(grepl)
 
 
+```
 
 
 
