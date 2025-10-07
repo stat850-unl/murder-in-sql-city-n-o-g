@@ -83,23 +83,25 @@ dbDisconnect(con)
 
 
 ```{r}
-# we first filter SQL city from Crime report
+# we first filter SQL city from Crime report, then we do filter by date and type
 SQL_filtered <- crime_scene_report %>%
   filter(
     city == "SQL City",
     date == 20180115,
     type == "murder"
   )
-
 ```
 
 ```{r}
-
-filtered_person <- person%>%
-  filter(grepl)
-
+Filter_person <- person %>%
+  filter(grepl("Annabel", name, ignore.case = TRUE))%>%
+    filter(grepl("Franklin Ave",address_street_name, ignore.case = TRUE))
 
 ```
+
+=======
+[1] "Security footage shows that there were 2 witnesses. The first witness lives at the last house on \"Northwestern Dr\". The second witness, named Annabel, lives somewhere on \"Franklin Ave\"."
+>>>>>>> a5ab4001aaf7dedeb78a3c382d290112cf6d9870
 
 
 
