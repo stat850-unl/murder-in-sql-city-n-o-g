@@ -2,7 +2,7 @@
 title: "Homework: Murder in SQL City"
 execute:
   error: true
-author: "Your Name"
+author: "Nadjia, Omid, and Gaurav"
 output: html_document
 ---
 
@@ -73,7 +73,11 @@ purrr::walk(table_names, function(x) {
 dbDisconnect(con)
 
 ```
+```{r}
+#We first want to filter the crime scene report to only show us information from SQL City.
 
+#Next, we can filter the report (which is now only showing us reports from SQL City) by the date of the murder: January 15th
+#And then we can filter the report by "type" of crime to show us only reports of murders.
 
 ```{r}
 # we first filter SQL city from Crime report, then we do filter by date and type
@@ -137,3 +141,4 @@ print(crime_scene_report.head())
 
 con.close()
 ```
+
