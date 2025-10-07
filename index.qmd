@@ -71,7 +71,41 @@ purrr::walk(table_names, function(x) {
 
 # close the connection when you're done
 dbDisconnect(con)
+
 ```
+
+
+```{r}
+# we first filter SQL city from Crime report
+SQL_filtered <- crime_scene_report %>%
+  filter(
+    city == "SQL City",
+    date == 20180115,
+    type == "murder"
+  )
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
