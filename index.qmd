@@ -96,6 +96,12 @@ SQL_filtered <- crime_scene_report %>%
 Filter_person <- person %>%
   filter(grepl("Annabel", name, ignore.case = TRUE))%>%
     filter(grepl("Franklin Ave",address_street_name, ignore.case = TRUE))
+filter_northwestern<-person%>%
+  filter(
+    address_street_name=="Northwestern Dr",
+    address_number==max(address_number)
+    )
+#Name is Morty Schapiro
 
 ```
 
