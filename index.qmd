@@ -2,7 +2,7 @@
 title: "Homework: Murder in SQL City"
 execute:
   error: true
-author: "Your Name"
+author: "Nadjia, Omid, and Gaurav"
 output: html_document
 ---
 
@@ -72,29 +72,10 @@ purrr::walk(table_names, function(x) {
 # close the connection when you're done
 dbDisconnect(con)
 ```
+```{r}
+#We first want to filter the crime scene report to only show us information from SQL City.
 
-
-
-## Python
-
-```{python table-setup-py}
-import pandas as pd
-import sqlite3
-
-# Read sqlite query results into a pandas DataFrame
-con = sqlite3.connect("sql-murder-mystery.db")
-
-crime_scene_report = pd.read_sql_query("SELECT * from crime_scene_report", con)
-drivers_license = pd.read_sql_query("SELECT * from drivers_license", con)
-facebook_event_checkin = pd.read_sql_query("SELECT * from facebook_event_checkin", con)
-get_fit_now_check_in = pd.read_sql_query("SELECT * from get_fit_now_check_in", con)
-get_fit_now_member = pd.read_sql_query("SELECT * from get_fit_now_member", con)
-income = pd.read_sql_query("SELECT * from income", con)
-interview = pd.read_sql_query("SELECT * from interview", con)
-person = pd.read_sql_query("SELECT * from person", con)
-
-# Verify that result of SQL query is stored in the dataframe
-print(crime_scene_report.head())
-
-con.close()
+#Next, we can filter the report (which is now only showing us reports from SQL City) by the date of the murder: January 15th
+#And then we can filter the report by "type" of crime to show us only reports of murders.
 ```
+
