@@ -110,7 +110,11 @@ filter_northwestern<-person%>%
 >>>>>>> a5ab4001aaf7dedeb78a3c382d290112cf6d9870
 
 
+```{r}
 
+merged_suspect <- union(filter_northwestern, Filter_person)
+
+```
 
 
 
