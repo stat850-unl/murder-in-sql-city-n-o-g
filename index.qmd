@@ -96,8 +96,9 @@ SQL_filtered <- crime_scene_report %>%
 
 ```{r}
 Filter_person <- person %>%
-  filter(grepl("Annabel", name, ignore.case = TRUE))%>%
-    filter(grepl("Franklin Ave",address_street_name, ignore.case = TRUE))
+  filter(
+    grepl("Annabel", name, ignore.case = TRUE),
+    grepl("Franklin Ave",address_street_name, ignore.case = TRUE))
 filter_northwestern<-person%>%
   filter(
     address_street_name=="Northwestern Dr",
@@ -109,7 +110,7 @@ filter_northwestern<-person%>%
 
 =======
 [1] "Security footage shows that there were 2 witnesses. The first witness lives at the last house on \"Northwestern Dr\". The second witness, named Annabel, lives somewhere on \"Franklin Ave\"."
->>>>>>> a5ab4001aaf7dedeb78a3c382d290112cf6d9870
+
 
 
 ```{r}
@@ -119,15 +120,8 @@ merged_suspect <- union(filter_northwestern, Filter_person)
 
 ```{r}
 interview_filtered <- interview %>%
-  filter(
-    person_id == 14887 |
-    person_id == 16371
-  )
-
-interview_filtered<- interview_filtered%>%
-  mutate(
-    Suspect = merged_suspect$name
-  )
+  filter(person_id %in% merged_suspect$id)%>%
+  left_join(merged_suspect, by = c("person_id"= "id"))
 
 
 #Morty Schapiro: I heard a gunshot and then saw a man run out. He had a "Get Fit Now Gym" bag. The membership number on the bag started with "48Z". Only gold members have those bags. The man got into a car with a plate that included "H42W".
@@ -142,24 +136,74 @@ interview_filtered<- interview_filtered%>%
 membership_filtered <- get_fit_now_member %>%
   filter(membership_status == "gold" , grepl("48Z", id))
 ```
-
+ 
 ```{r}
 checkin_filtered<-get_fit_now_check_in %>%
-  filter(membership_id == "48Z7A"| membership_id== "48Z55")
+  filter(
+    membership_id == "48Z7A"| membership_id== "48Z55",
+    check_in_date == 20180109
+    )
 ```
 
 
 
 ```{r}
-filtered_plate<- drivers_license %>%
-  filter(grepl("H42W", plate_number))
+suspected_plate<- drivers_license %>%
+  filter(grepl("H42W", plate_number),
+         gender == "male")
 ```
 
 ```{r}
+car_match <- person %>%
+  filter(license_id ==423327| id== 664760)
+
+Killer<-car_match$name
+cat("Killer is:", Killer)
+
+#Killer is Jeremy Bowers
+```
+
+```{r}
+interview_jeremy<- interview%>%
+  filter(person_id %in% car_match$id)
+
+interview_jeremy$transcript
+```
+```{r}
+mastermind_details <- drivers_license%>%
+  filter(hair_color == "red",car_make == "Tesla", car_model=="Model S", gender == "female", height>=65, height<=67)
+```
+
+
+```{r}
+mastermind_event <- facebook_event_checkin%>%
+  filter(event_name=="SQL Symphony Concert", grepl(201712, date))%>%
+  group_by(person_id)%>%
+  filter(n()==3)%>%
+  ungroup()
+
+```
+
+
+```{r}
+mastermind_name_id<- person%>%
+  filter(license_id %in% mastermind_details$id)
+
+```
+
+
+```{r}
+Mastermind<- mastermind_name_id%>%
+  filter(id %in% mastermind_event$person_id)
+
+cat("Masterman found: Masterman is actually woman:",Mastermind$name, "\nMission Accomplished!!! \nOver and Out")
 
 
 ```
 
+
+
+```
 
 
 
