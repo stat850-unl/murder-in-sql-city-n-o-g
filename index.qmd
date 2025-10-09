@@ -115,6 +115,14 @@ filter_northwestern<-person%>%
 ```{r}
 
 merged_suspect <- union(filter_northwestern, Filter_person)
+```
+
+```{r}
+interview_filtered <- interview %>%
+  filter(
+    person_id == 14887 |
+    person_id == 16371
+    )
 
 ```
 
