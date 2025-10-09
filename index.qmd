@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, message = F)
 options(digits = 3)
 
 library(tidyverse)
+
 ```
 
 ## Instructions
@@ -73,6 +74,7 @@ purrr::walk(table_names, function(x) {
 dbDisconnect(con)
 
 ```
+
 ```{r}
 #We first want to filter the crime scene report to only show us information from SQL City.
 
