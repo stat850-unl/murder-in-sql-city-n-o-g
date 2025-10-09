@@ -150,11 +150,16 @@ checkin_filtered<-get_fit_now_check_in %>%
 
 
 ```{r}
-filtered_plate<- drivers_license %>%
-  filter(grepl("H42W", plate_number))
+suspected_plate<- drivers_license %>%
+  filter(grepl("H42W", plate_number),
+         gender == "male")
 ```
 
+```{r}
+car_match <- person %>%
+  filter(id %in% suspected_plate$id)
 
+```
 
 
 
