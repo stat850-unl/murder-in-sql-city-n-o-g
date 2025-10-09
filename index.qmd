@@ -124,6 +124,10 @@ interview_filtered <- interview %>%
     person_id == 16371
     )
 
+interview_filtered<- interview_filtered%>%
+  mutate(
+    Suspect = merged_suspect$name
+  )
 ```
 
 
