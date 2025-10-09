@@ -138,10 +138,13 @@ interview_filtered<- interview_filtered%>%
 
 
 ```{r}
-membership_filtered<- get_fit_now_member%>%
-  filter(
-    membership_status == "gold")
+membership_filtered <- get_fit_now_member %>%
+  filter(membership_status == "gold" , grepl("48Z", id))
 ```
+
+
+
+
 
 
 
